@@ -1,0 +1,27 @@
+[project]
+name = "bill-splitter"
+version = "0.1.0"
+description = "A secure, collaborative expense-sharing web application built with Python, Flask, and SQLAlchemy."
+authors = [
+    { name = "Kushal Koochana", email = "koochanakushal@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10,<4.0"
+license = "MIT"
+dependencies = [
+    "flask (==3.0.3)",
+    "flask-login (==0.6.3)",
+    "flask-sqlalchemy (==3.1.1)",
+    "flask-mail (==0.10.0)",
+    "flask-wtf (==1.2.2)",
+    "python-dotenv (==1.0.1)",
+    "werkzeug (==3.0.3)",
+    "aiosmtpd (==1.4.6)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
