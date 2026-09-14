@@ -125,7 +125,8 @@ Bill_Splitter/
 │   ├── utils.py             # Helper functions
 │   └── __init__.py          # Application factory
 │
-├── requirements.txt
+├── pyproject.toml
+├── poetry.lock
 ├── README.md
 └── .gitignore
 ```
@@ -139,7 +140,7 @@ Bill_Splitter/
 Before running the application, ensure you have:
 
 - Python 3.10 or later
-- pip
+- [Poetry](https://python-poetry.org/docs/#installation) 2.4.3 (or later)
 
 ### 1. Clone the Repository
 
@@ -148,29 +149,15 @@ git clone <repository-url>
 cd Bill_Splitter
 ```
 
-### 2. Create a Virtual Environment
+### 2. Install Dependencies
 
-**Windows**
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-**macOS / Linux**
+Poetry creates and manages an isolated virtual environment for you automatically:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+poetry install
 ```
 
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure Environment Variables
+### 3. Configure Environment Variables
 
 Create a `.env` file in the project root.
 
@@ -178,24 +165,24 @@ Typical configuration includes:
 
 ```env
 SECRET_KEY=your_secret_key
-
+MAIL_SUPPRESS_SEND=False
 MAIL_SERVER=127.0.0.1
 MAIL_PORT=8025
 MAIL_USE_TLS=False
 MAIL_USE_SSL=False
-MAIL_USERNAME=
-MAIL_PASSWORD=
+MAIL_USERNAME=user123
+MAIL_PASSWORD=password123
 MAIL_DEFAULT_SENDER=noreply@example.com
 ```
 
 The `.env` file is ignored by Git to prevent sensitive configuration data from being committed.
 
-### 5. Initialise the Database
+### 4. Initialise the Database
 
 Run the custom Flask CLI command:
 
 ```bash
-flask init-db
+poetry run flask init-db
 ```
 
 This creates the database schema and seeds the default administrator account.
@@ -218,7 +205,7 @@ Password reset emails and notification emails can be tested locally using **aios
 Open a second terminal and run:
 
 ```bash
-python -m aiosmtpd -n -l 127.0.0.1:8025
+poetry run python -m aiosmtpd -n -l 127.0.0.1:8025
 ```
 
 The application will send emails to this local SMTP server during development.
@@ -227,10 +214,8 @@ The application will send emails to this local SMTP server during development.
 
 ## Running the Application
 
-With the virtual environment activated, start the Flask development server:
-
 ```bash
-flask run
+poetry run flask run
 ```
 
 The application will be available at:
